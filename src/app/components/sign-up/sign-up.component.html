@@ -1,1 +1,64 @@
-<p>sign-up works!</p>
+<div class="row d-flex justify-content-center animated fadeIn">
+    <div class="col-lg-8 col-xl-7">
+        <div class="container justify-content-center g-3">
+            <div class="text-center">
+            <h3>Sign Up</h3>
+            </div>
+            <div id="divLogin" class="card">
+            <!-- Email input -->
+            <div class="row mb-4 mt-4 mx-4">
+                <div class="col justify-content-center">
+                <label id="emailLabel" class="form-label" for="emailInput">Email address</label>
+                <input id="emailInput" type="email" class="form-control"
+                    placeholder="Email Address" #userEmail required/>
+                </div>
+            </div>
+    
+            <!-- Password input -->
+            <div class="row mb-4 mt-4 mx-4">
+                <div class="col justify-content-center">
+                <label id="passwordLabel" class="form-label" for="passwordInput">Password</label>
+                <input id="passwordInput" type="password" class="form-control" placeholder="Password"
+                    #userPwd required (change)="comprobarDatosSignUp(userEmail.value, userPwd.value, userPwd2.value)"/>
+                </div>
+            </div>
+    
+            <!-- Confirm password -->
+            <div class="row mb-4 mt-4 mx-4">
+                <div class="col justify-content-center">
+                <img id="wrongIcon" style="display: none" src="https://www.pngmart.com/files/17/Wrong-Transparent-Background.png" height="16px" width="16px" alt="wrong cross">
+                <img id="correctIcon" style="display: none" src="https://www.pngmart.com/files/3/Green-Tick-PNG-Picture.png" height="16px" width="16px" alt="correct check">
+                <label id="passwordLabel" class="form-label" for="passwordInput">Confirm Password</label>
+                <input id="passwordInput" type="password" class="form-control" placeholder="Password"
+                    #userPwd2 required (change)="comprobarDatosSignUp(userEmail.value, userPwd.value, userPwd2.value)"/>
+                </div>
+            </div>
+    
+            <!-- Submit -->
+            <div id="divSubmit" class="row mb-4">
+                <div class="col d-flex justify-content-center">
+                <input id="submitInput" type="button" class="btn btn-primary mb-4 mt-4 mx-4" value="Registrarse"
+                    (click)="authService.SignUp(userEmail.value, userPwd.value)" disabled/>
+                </div>
+            </div>
+    
+            <div class="formGroup text-center">
+            <span class="or"><span class="orInner">Or</span></span>
+            </div>
+            <!-- Continue with Google -->
+            <div class="formGroup text-center">
+            <button type="button" class="btn googleBtn"
+            (click)="authService.GoogleAuth()">
+                <i class="fab fa-google-plus-g"></i>
+                Continue with Google
+            </button>
+            </div>
+        </div>
+        <div class="redirectToLogin text-center">
+            <span>Already have an account?
+            <span class="redirect" routerLink="/sign-in">Log In</span>
+            </span>
+        </div>
+    </div>
+</div>
+  

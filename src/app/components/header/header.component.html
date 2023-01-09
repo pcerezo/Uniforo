@@ -1,1 +1,20 @@
-<p>header works!</p>
+<div id="header">
+    <div id="logo" class="row">
+      <div id="logo_text" class="col-10 text-center">
+        <!-- class="logo_colour", allows you to change the colour of the text -->
+        <h1><a routerLink="home"><span class="logo_colour">{{ is.info.titulo }}</span></a></h1>
+        <h2><span class="logo_text">Tu página de recomendaciones</span></h2>
+      </div>
+    </div>
+    <nav id="menubar" class="border-bottom">
+      <ul id="menu">
+        <li routerLinkActive="active"><a routerLink="home">Inicio</a></li>
+        <li *ngIf="authService.userData as user" routerLinkActive="active"><a routerLink="perfil">Perfil</a></li>
+        <li routerLinkActive="active"><a routerLink="contacto">Contacto</a></li>
+        <li *ngIf="!authService.userData as user" routerLinkActive="active"><a routerLink="register-user">Register</a></li>
+        <li *ngIf="!authService.userData as user" routerLinkActive="active"><a routerLink="sign-in">Login</a></li>
+        <li *ngIf="authService.userData as user" routerLinkActive="active"><a routerLink="" (click)="authService.SignOut()">Log out</a></li>
+      </ul>
+    </nav>
+  </div>
+  

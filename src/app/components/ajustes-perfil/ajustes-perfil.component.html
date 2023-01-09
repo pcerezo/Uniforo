@@ -1,1 +1,56 @@
-<p>ajustes-perfil works!</p>
+<div class="row d-flex justify-content-center animated fadeIn"
+  *ngIf="authService.userData as user">
+  <div class="col-lg-8 col-xl-7">
+    <div class="container justify-content-center g-3">
+      <div class="text-center">
+        <h3>Modificar datos de usuario</h3>
+      </div>
+      <div id="divLogin" class="card">
+        <!-- Username input -->
+        <div class="row mb-4 mt-4 mx-4">
+          <div class="col justify-content-center">
+            <label id="userNameLabel" class="form-label" for="emailInput">Nombre de usuario</label>
+            <input id="userNameInput" type="text" class="form-control" placeholder="Username" #userName
+              value="{{user.displayName}}" required>
+          </div>
+        </div>
+
+        <!-- click here to choose file -->
+        <!-- <input type="file" name="files[]" id="files"> -->
+        <!-- click here to upload file -->
+        <!-- <input type="hidden" name="url" id="url">
+        <form (ngSubmit)="authService.SubirArchivo()">
+          <button type="button" (change)="authService.CambioArchivo($event)">Cambio Archivo</button>
+          <button [ngClass]="{'button': true, 'is-success': true, 'is-large': true, 'is-loading': authService.porcentaje > 0 && authService.porcentaje < 100}"
+            [disabled]="!authService.archivoForm.valid && (authService.porcentaje > 0 && authService.porcentaje < 100)">Subir archivo</button>
+        </form> -->
+
+        <form (submit)="authService.SubirArchivo()">
+          <div class="file has-name is-boxed">
+            <label class="file-label">
+              <input class="file-input" type="file" formControlName="archivo" (change)="authService.CambioArchivo($event)">
+              <span class="file-cta">
+                <span class="file-label">
+                  Elegir un archivo…
+                </span>
+              </span>
+              <span class="file-name">
+                {{ authService.mensajeArchivo }}
+              </span>
+            </label>
+          </div>
+          <hr>
+          <progress *ngIf="authService.porcentaje > 0 && authService.porcentaje < 100" class="progress is-large is-success" value="{{authService.porcentaje}}" max="100">{{authService.porcentaje}}%</progress>
+          <button type="submit" (class)="{'button': true, 'is-success': true, 'is-large': true, 'is-loading': authService.porcentaje > 0 && authService.porcentaje < 100}" (disabled)="!authService.archivoForm.valid && (authService.porcentaje > 0 && authService.porcentaje < 100)">Subir archivo</button>
+        </form>
+        <!-- Submit -->
+        <div id="divSubmit" class="row mb-4">
+          <div class="col d-flex justify-content-center">
+            <input id="submitAjustes" type="button" class="btn btn-primary mb-4 mt-4 mx-4" value="Modificar"
+              (click)="authService.SetDisplayName(userName.value)"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InfoService } from 'src/app/services/info/info.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  anio : number = new Date().getFullYear();
+  mes : number = new Date().getMonth();
+  
+  constructor( public is : InfoService) { }
 
   ngOnInit(): void {
   }

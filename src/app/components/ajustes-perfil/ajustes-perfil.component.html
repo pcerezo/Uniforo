@@ -25,10 +25,12 @@
             [disabled]="!authService.archivoForm.valid && (authService.porcentaje > 0 && authService.porcentaje < 100)">Subir archivo</button>
         </form> -->
 
-        <form (submit)="authService.SubirArchivo()">
+        <form >
           <div class="file has-name is-boxed">
             <label class="file-label">
-              <input class="file-input" type="file" formControlName="archivo" (change)="authService.CambioArchivo($event)">
+              <input class="file-input" type="file" accept=".png, .jpg, .jpeg"
+                formControlName="archivo" (change)="authService.CambioArchivo($event)">
+              <img src="{{authService.imagenes[0]}}" alt="imagen subida">
               <span class="file-cta">
                 <span class="file-label">
                   Elegir un archivo…
@@ -40,8 +42,8 @@
             </label>
           </div>
           <hr>
-          <progress *ngIf="authService.porcentaje > 0 && authService.porcentaje < 100" class="progress is-large is-success" value="{{authService.porcentaje}}" max="100">{{authService.porcentaje}}%</progress>
-          <button type="submit" (class)="{'button': true, 'is-success': true, 'is-large': true, 'is-loading': authService.porcentaje > 0 && authService.porcentaje < 100}" (disabled)="!authService.archivoForm.valid && (authService.porcentaje > 0 && authService.porcentaje < 100)">Subir archivo</button>
+          <progress *ngIf="authService.porcentaje > 0 && authService.porcentaje < 100" class="progress is-large is-success" value="{{authService.porcentaje}}" max="100">{{authService.porcentaje}}</progress>
+          <button type="submit" (class)="{'button': true, 'is-success': true, 'is-large': true, 'is-loading': authService.porcentaje > 0 && authService.porcentaje < 100}">Subir archivo</button>
         </form>
         <!-- Submit -->
         <div id="divSubmit" class="row mb-4">

@@ -6,6 +6,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../user';
+import { finalize } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class AuthService {
   public archivoForm = new FormGroup( {
     archivo: new FormControl(null, Validators.required),
   });
+  imagenes: any[] = [];
 
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
@@ -166,8 +168,18 @@ export class AuthService {
   }
 
   CambioArchivo(event : any) {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    let nombre = "/perfil-"+user.uid;
+
     if (event.target.files.length > 0) {
       this.archivo = event.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onloadend = () => {
+        console.log(reader.result);
+        this.imagenes.push(reader.result);
+        this.SubirArchivo(nombre, reader.result).then(urlImagen => console.log(urlImagen));
+      }
       this.nombreArchivo = event.target.files[0].name;
       this.mensajeArchivo = 'Archivo seleccionado';
     }
@@ -176,16 +188,22 @@ export class AuthService {
     }
   }
 
-  SubirArchivo() {
+  async SubirArchivo(nombre: string, base64: any) {
     const user = JSON.parse(localStorage.getItem('user')!);
-    // const referencia = this.afStorage.ref("/perfil-"+user.uid);
-    const tarea = this.afStorage.upload("/perfil-"+user.uid, this.archivo);
+    const referencia = this.afStorage.ref(nombre);
+    try{
+      let respuesta = await referencia.child("/" + user.uid + "/" + nombre).putString(base64, 'data_url');
+      console.log(respuesta);
 
-    // console.log("URL: " + this.URLPublica);
+      return await respuesta.ref.getDownloadURL();
+    } catch(err) {
+      console.log(err);
 
-    // return this.afAuth.currentUser
-    //   .then((u: any) => u.updateProfile({
-    //     photoURL: "",
-    //   }));
+      return null;
+    }
+  }
+
+  getImages() {
+    
   }
 }

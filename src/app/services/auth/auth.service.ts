@@ -15,7 +15,7 @@ export class AuthService {
   userData: any; // Save logged in user data
   public mensajeArchivo = 'No hay un archivo seleccionado';
   public datosFormulario = new FormData();
-  public archivo : String = '';
+  public archivo : any;
   public nombreArchivo : string = '';
   public URLPublica! : string;
   public porcentaje = 0;
@@ -23,6 +23,7 @@ export class AuthService {
   public archivoForm = new FormGroup( {
     archivo: new FormControl(null, Validators.required),
   });
+  public listo : Boolean = false;
   imagenes: any[] = [];
 
   constructor(
@@ -201,13 +202,16 @@ export class AuthService {
       reader.onloadend = () => {
         console.log(reader.result);
         this.imagenes.push(reader.result);
-        this.SubirArchivo(nombre, reader.result).then(urlImagen => {
-          console.log("URL Imagen dentro: " + urlImagen);
-          if (urlImagen != null) {
-            this.URLPublica = urlImagen;
-            this.LanzarUpdatePhoto(urlImagen);
-          }
-        });
+        this.nombreArchivo = nombre;
+        this.archivo = reader.result;
+        this.listo = true;
+        // this.SubirArchivo(nombre, reader.result).then(urlImagen => {
+        //   console.log("URL Imagen dentro: " + urlImagen);
+        //   if (urlImagen != null) {
+        //     this.URLPublica = urlImagen;
+        //     this.LanzarUpdatePhoto(urlImagen);
+        //   }
+        // });
       }
       this.nombreArchivo = event.target.files[0].name;
       this.mensajeArchivo = 'Archivo seleccionado';
@@ -218,19 +222,17 @@ export class AuthService {
   }
 
   async SubirArchivo(nombre: string, base64: any) {
+    this.listo = false;
     const user = JSON.parse(localStorage.getItem('user')!);
     const referencia = this.afStorage.ref(user.uid);
     try{
       let respuesta = await referencia.child("/" + nombre).putString(base64, 'data_url');
       console.log(respuesta);
-      
-      return await respuesta.ref.getDownloadURL();
-     
     } catch(err) {
       console.log(err);
-
-      return null;
     }
+
+    window.location.href='perfil';
   }
 
   getImages() {

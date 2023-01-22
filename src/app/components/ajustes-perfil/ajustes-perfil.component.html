@@ -42,8 +42,8 @@
             </label>
           </div>
           <hr>
-          <!-- <progress *ngIf="authService.porcentaje > 0 && authService.porcentaje < 100" class="progress is-large is-success" value="{{authService.porcentaje}}" max="100">{{authService.porcentaje}}</progress>
-          <button type="submit" (class)="{'button': true, 'is-success': true, 'is-large': true, 'is-loading': authService.porcentaje > 0 && authService.porcentaje < 100}">Subir archivo</button> -->
+          <progress *ngIf="authService.porcentaje > 0 && authService.porcentaje < 100" class="progress is-large is-success" value="{{authService.porcentaje}}" max="100">{{authService.porcentaje}}</progress>
+          <button (click)="authService.SubirArchivo(authService.nombreArchivo, authService.archivo)" [disabled]="!authService.listo" (class)="{'button': true, 'is-success': true, 'is-large': true, 'is-loading': authService.porcentaje > 0 && authService.porcentaje < 100}">Subir archivo</button>
         </form>
         <!-- Submit -->
         <div id="divSubmit" class="row mb-4">

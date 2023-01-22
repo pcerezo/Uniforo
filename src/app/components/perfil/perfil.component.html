@@ -4,12 +4,13 @@
       <nav></nav>
       <!-- Main content -->
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="inner-adjust contenido_perfil">
-          <div class="pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">User Profile</h1>
-          </div>
+        <div class="inner-adjust contenido_perfil d-flex justify-content-center">
           <!-- Show user data when logged in -->
+          <div></div>
           <div class="row" *ngIf="authService.userData as user">
+            <div class="pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">User Profile</h1>
+            </div>
             <div class="col-md-12">
               <div class="media">
                 <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/img/dummy-user.jpg'}}"
@@ -22,10 +23,11 @@
                 </div>
               </div>
             </div>
+            <div>
+              <a routerLink="ajustes-perfil">Ajustes del perfil</a>
+            </div>
           </div>
-        </div>
-        <div>
-          <a routerLink="ajustes-perfil">Ajustes del perfil</a>
+          <div></div>
         </div>
       </main>
     </div>

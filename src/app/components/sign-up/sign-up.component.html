@@ -10,7 +10,7 @@
                 <div class="col justify-content-center">
                 <label id="emailLabel" class="form-label" for="emailInput">Email address</label>
                 <input id="emailInput" type="email" class="form-control"
-                    placeholder="Email Address" #userEmail required/>
+                    placeholder="Email Address" #userEmail required (input)="comprobarDatosSignUp(userEmail.value, userPwd.value, userPwd2.value)"/>
                 </div>
             </div>
     
@@ -19,7 +19,7 @@
                 <div class="col justify-content-center">
                 <label id="passwordLabel" class="form-label" for="passwordInput">Password</label>
                 <input id="passwordInput" type="password" class="form-control" placeholder="Password"
-                    #userPwd required (change)="comprobarDatosSignUp(userEmail.value, userPwd.value, userPwd2.value)"/>
+                    #userPwd required (input)="comprobarDatosSignUp(userEmail.value, userPwd.value, userPwd2.value)"/>
                 </div>
             </div>
     
@@ -30,7 +30,7 @@
                 <img id="correctIcon" style="display: none" src="https://www.pngmart.com/files/3/Green-Tick-PNG-Picture.png" height="16px" width="16px" alt="correct check">
                 <label id="passwordLabel" class="form-label" for="passwordInput">Confirm Password</label>
                 <input id="passwordInput" type="password" class="form-control" placeholder="Password"
-                    #userPwd2 required (change)="comprobarDatosSignUp(userEmail.value, userPwd.value, userPwd2.value)"/>
+                    #userPwd2 required (input)="comprobarDatosSignUp(userEmail.value, userPwd.value, userPwd2.value)"/>
                 </div>
             </div>
     

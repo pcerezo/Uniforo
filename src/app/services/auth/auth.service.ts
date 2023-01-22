@@ -17,7 +17,7 @@ export class AuthService {
   public datosFormulario = new FormData();
   public archivo : String = '';
   public nombreArchivo : string = '';
-  public URLPublica : string = '';
+  public URLPublica! : string;
   public porcentaje = 0;
   public finalizado = false;
   public archivoForm = new FormGroup( {
@@ -131,6 +131,9 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
     };
+
+    this.userData = userData;
+
     return userRef.set(userData, {
       merge: true,
     });
@@ -163,6 +166,25 @@ export class AuthService {
       }));
   }
 
+  LanzarUpdatePhoto(photoURL : string) {
+    let user = JSON.parse(localStorage.getItem('user')!);
+
+    const userData: User = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: photoURL,
+      emailVerified: user.emailVerified,
+    };
+
+    this.userData = userData;
+
+    return this.afAuth.currentUser
+      .then((u: any) => u.updateProfile({
+        photoURL: photoURL,
+      }));
+  }
+
   SetDisplayName(newDisplayName: string) {
     return this.LanzarUpdateDisplayName(newDisplayName);
   }
@@ -172,13 +194,20 @@ export class AuthService {
     let nombre = "/perfil-"+user.uid;
 
     if (event.target.files.length > 0) {
+      this.mensajeArchivo = 'Cargando archivo...';
       this.archivo = event.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onloadend = () => {
         console.log(reader.result);
         this.imagenes.push(reader.result);
-        this.SubirArchivo(nombre, reader.result).then(urlImagen => console.log(urlImagen));
+        this.SubirArchivo(nombre, reader.result).then(urlImagen => {
+          console.log("URL Imagen dentro: " + urlImagen);
+          if (urlImagen != null) {
+            this.URLPublica = urlImagen;
+            this.LanzarUpdatePhoto(urlImagen);
+          }
+        });
       }
       this.nombreArchivo = event.target.files[0].name;
       this.mensajeArchivo = 'Archivo seleccionado';
@@ -190,12 +219,13 @@ export class AuthService {
 
   async SubirArchivo(nombre: string, base64: any) {
     const user = JSON.parse(localStorage.getItem('user')!);
-    const referencia = this.afStorage.ref(nombre);
+    const referencia = this.afStorage.ref(user.uid);
     try{
-      let respuesta = await referencia.child("/" + user.uid + "/" + nombre).putString(base64, 'data_url');
+      let respuesta = await referencia.child("/" + nombre).putString(base64, 'data_url');
       console.log(respuesta);
-
+      
       return await respuesta.ref.getDownloadURL();
+     
     } catch(err) {
       console.log(err);
 

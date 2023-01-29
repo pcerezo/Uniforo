@@ -1,0 +1,11 @@
+.titular {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.sub_titular {
+    text-decoration: underline;
+    text-align: center;
+    font-size: x-large;
+}

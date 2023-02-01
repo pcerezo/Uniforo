@@ -1,11 +1,20 @@
 .titular {
     margin-bottom: 20px;
     text-align: center;
-    font-size: xx-large;
+    font-size: 60px;
 }
 
 .sub_titular {
     text-decoration: underline;
     text-align: center;
     font-size: x-large;
+}
+
+.p_sub_titular {
+    font-size: larger;
+}
+
+.item {
+    margin-top: 10%;
+    margin-bottom: 10%;
 }

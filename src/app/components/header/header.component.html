@@ -9,10 +9,12 @@
   <nav id="menubar" class="border-bottom col-9">
     <ul id="menu">
       <li routerLinkActive="active"><a routerLink="home">Inicio</a></li>
-      <li *ngIf="authService.userData as user" routerLinkActive="active"><a routerLink="perfil">Perfil</a></li>
       <li routerLinkActive="active"><a routerLink="contacto">Contacto</a></li>
-      <li *ngIf="!authService.userData as user" routerLinkActive="active"><a routerLink="register-user">Register</a></li>
-      <li *ngIf="!authService.userData as user" routerLinkActive="active"><a routerLink="sign-in">Login</a></li>
+    </ul>
+    <ul id="opcionesUsuario">
+      <li *ngIf="!authService.userData as user" routerLinkActive="active"><a routerLink="register-user">Registro</a></li>
+      <li *ngIf="!authService.userData as user" routerLinkActive="active"><a routerLink="sign-in">Inicia Sesión</a></li>
+      <li *ngIf="authService.userData as user" routerLinkActive="active"><a routerLink="perfil">Perfil</a></li>
       <li *ngIf="authService.userData as user" routerLinkActive="active"><a routerLink="" (click)="authService.SignOut()">Log out</a></li>
     </ul>
   </nav>

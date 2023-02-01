@@ -106,17 +106,27 @@ ol li
 #menubar
 { 
   padding: 20px;
+  background-color: #72a3a5;
 }
 
 ul#menu, ul#menu li
 { float: left;
   margin: 0;
-  padding: 0;}
+  padding: 0;
+}
+
+ul#opcionesUsuario li
+{
+  float: right;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
 ul#menu li
 { list-style: none;}
 
-ul#menu li a
+ul#menu li a, ul#opcionesUsuario li a
 { letter-spacing: 0.1em;
   font: normal 100% arial, sans-serif;
   display: block;
@@ -127,6 +137,7 @@ ul#menu li a
   color: #000;
   text-transform: uppercase;
   text-decoration: none;
+  font-weight: bold;
   background: transparent;}
 
 ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover

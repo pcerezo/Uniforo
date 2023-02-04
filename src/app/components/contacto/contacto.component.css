@@ -1,0 +1,19 @@
+li {
+    list-style: none;
+}
+
+#formularioDiv {
+    margin-top: 5%;
+}
+
+#formularioDiv > div {
+    width: fit-content;
+}
+
+#mensajeContactoDiv {
+    margin-top: 5%;
+}
+
+h1 {
+    margin-bottom: 30px;
+}

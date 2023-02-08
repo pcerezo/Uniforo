@@ -10,6 +10,7 @@
     <ul id="menu">
       <li routerLinkActive="active"><a routerLink="home">Inicio</a></li>
       <li routerLinkActive="active"><a routerLink="contacto">Contacto</a></li>
+      <li routerLinkActive="active"><a routerLink="buscar">Buscar</a></li>
     </ul>
     <ul id="opcionesUsuario">
       <li *ngIf="!authService.userData as user" routerLinkActive="active"><a routerLink="register-user">Registro</a></li>

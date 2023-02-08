@@ -205,13 +205,6 @@ export class AuthService {
         this.nombreArchivo = nombre;
         this.archivo = reader.result;
         this.listo = true;
-        // this.SubirArchivo(nombre, reader.result).then(urlImagen => {
-        //   console.log("URL Imagen dentro: " + urlImagen);
-        //   if (urlImagen != null) {
-        //     this.URLPublica = urlImagen;
-        //     this.LanzarUpdatePhoto(urlImagen);
-        //   }
-        // });
       }
       this.nombreArchivo = event.target.files[0].name;
       this.mensajeArchivo = 'Archivo seleccionado';
@@ -225,6 +218,7 @@ export class AuthService {
     this.listo = false;
     const user = JSON.parse(localStorage.getItem('user')!);
     const referencia = this.afStorage.ref(user.uid);
+    
     try{
       let respuesta = await referencia.child("/" + nombre).putString(base64, 'data_url');
       console.log(respuesta);
@@ -235,7 +229,9 @@ export class AuthService {
     window.location.href='perfil';
   }
 
-  getImages() {
-    
+  getDocumentos() {
+    this.afs.collection('facultades').doc("ylbEDDfdrTYfdIYdHTfx").ref.get().then(function(doc) {
+      console.log(doc.data());
+    })
   }
 }

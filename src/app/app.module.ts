@@ -25,6 +25,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { AuthService } from './services/auth/auth.service';
 import { InfoService } from './services/info/info.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     SignInComponent,
     SignUpComponent,
     VerifyEmailComponent,
+    BusquedaComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,16 +8,18 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { AjustesPerfilComponent } from './components/ajustes-perfil/ajustes-perfil.component';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
 
 const routes: Routes = [
   { path: 'home', component: InicioComponent },
-  { path: 'contacto', component: ContactoComponent},
+  { path: 'contacto', component: ContactoComponent },
+  { path: 'buscar', component: BusquedaComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'register-user', component: SignUpComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'verify-email-address', component: VerifyEmailComponent},
+  { path: 'verify-email-address', component: VerifyEmailComponent } ,
   { path: 'perfil', component: PerfilComponent },
-  { path: 'perfil/ajustes-perfil', component: AjustesPerfilComponent},
+  { path: 'perfil/ajustes-perfil', component: AjustesPerfilComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 

@@ -1,4 +1,14 @@
 <div class="animated fadeIn ">
+    <div id="divSelectUnis" class="d-flex justify-content-center col-1">
+        <!-- <div class="row justify-content-center">
+            <div id="faltanCosasBoton" class="col col-6">
+                <a id="botonContacto" class="btn btn-warning rounded-pill align-self-center" (click)="dataService.getUnis()">Documentos</a>
+            </div>
+        </div> -->
+        <select id="selectUnis" class="form-control col-1">
+            <option *ngFor="let uni of dataService.listaUnis" (value)="uni">{{ uni }}</option>
+        </select>
+    </div>
     <div class="d-flex justify-content-center">
         <div id="cabeceraUni">
             <h2>Universidad de Granada (UGR)</h2>

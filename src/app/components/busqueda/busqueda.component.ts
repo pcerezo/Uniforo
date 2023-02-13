@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'app-busqueda',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusquedaComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dataService : DataService) { }
 
   ngOnInit(): void {
   }

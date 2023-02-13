@@ -26,6 +26,7 @@ import { AuthService } from './services/auth/auth.service';
 import { InfoService } from './services/info/info.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { DataService } from './services/data/data.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
   ],
   providers: [
     InfoService,
-    AuthService
+    AuthService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

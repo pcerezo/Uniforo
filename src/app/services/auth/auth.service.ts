@@ -6,7 +6,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../user';
-import { finalize } from 'rxjs';
+import { finalize, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -229,9 +229,4 @@ export class AuthService {
     window.location.href='perfil';
   }
 
-  getDocumentos() {
-    this.afs.collection('facultades').doc("ylbEDDfdrTYfdIYdHTfx").ref.get().then(function(doc) {
-      console.log(doc.data());
-    })
-  }
 }

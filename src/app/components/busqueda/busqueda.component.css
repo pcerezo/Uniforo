@@ -4,3 +4,15 @@
     border-style: solid;
     border-width: 1px;
 }
+
+#selectUnis {
+    width: 165px;
+}
+
+#divSelectorUni{
+    margin-top: 4%;
+}
+
+#divTituloBuscar {
+    margin-top: 3%;
+}

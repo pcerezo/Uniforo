@@ -10,7 +10,13 @@ export class BusquedaComponent implements OnInit {
 
   constructor(public dataService : DataService) { }
 
+  listaUnis : any [] = [];
+
   ngOnInit(): void {
+    this.dataService.getUnis().subscribe( (data) => {
+      this.listaUnis = data;
+      console.log("uni: ", data.data);
+    });
   }
 
 }

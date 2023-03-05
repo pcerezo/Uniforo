@@ -7,6 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { finalize, map, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class DataService {
   public nombreCompleto = '';
   public ciudad = '';
   public datos!: Observable<any>;
-  public listaUnis : String [] = [];
+  public listaUnis : any [] = [];
   public listaFacus : String [] = [];
 
   constructor(
@@ -26,17 +27,22 @@ export class DataService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
+    private http: HttpClient
   ) {
-    this.getUnis();
+    //this.getUnis();
   }
 
-  getUnis() {
-    let collection = this.afs.collection("universidades").get().subscribe( (query) => {
-      query.forEach((doc) => {
-        this.listaUnis.push(doc.id);
-        console.log(doc.id + ": " + doc.get("ciudad"));
-      });
-    });
+  // getUnis() {
+  //   let collection = this.afs.collection("universidades").get().subscribe( (query) => {
+  //     query.forEach((doc) => {
+  //       this.listaUnis.push(doc.id);
+  //       console.log(doc.id + ": " + doc.get("ciudad"));
+  //     });
+  //   });
+  // }
+
+  getUnis(): Observable<any> {
+    return this.http.get<any>("/api/universidades");
   }
 
   getFacultades(uni: string) {

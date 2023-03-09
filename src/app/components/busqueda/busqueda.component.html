@@ -2,18 +2,18 @@
     <div id="divTituloBuscar" class="d-flex justify-content-center">
         <h1>Búsqueda</h1>
     </div>
-    <!-- <div id="divSelectorUni" class="d-flex justify-content-center">
+    <div id="divSelectorUni" class="d-flex justify-content-center">
         <div>
             <label id="labelSelectUnis" for="selectUnis">Selecciona universidad</label>
-            <select id="selectUnis" class="form-select" aria-label="---">
+            <select id="selectUnis" class="form-select w-auto" aria-label="---">
                 <option value=""></option>
-                <option *ngFor="let uni of listaUnis; index as i">{{ uni.id }}</option>
+                <option *ngFor="let uni of listaUnis" [value]="uni.abreviatura">{{ uni.abreviatura }} - {{ uni.nombre }}</option>
             </select>
         </div>
-    </div> -->
-    <div class="d-flex justify-content-center">
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="uniSeleccionada">
         <div id="cabeceraUni">
-            <h2>Universidad de Granada (UGR)</h2>
+            <h2>{{ uniSeleccionada.nombre }} ({{ uniSeleccionada.abreviatura}})</h2>
         </div>
     </div>
     <!-- <div id="seccionesBusqueda" class="d-flex justify-content-around">

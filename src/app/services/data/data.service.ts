@@ -21,6 +21,8 @@ export class DataService {
   public listaUnis : any [] = [];
   public listaFacus : String [] = [];
 
+  private urlUniversidades = "/api/universidades";
+
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afStorage : AngularFireStorage,
@@ -29,20 +31,14 @@ export class DataService {
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     private http: HttpClient
   ) {
-    //this.getUnis();
   }
 
-  // getUnis() {
-  //   let collection = this.afs.collection("universidades").get().subscribe( (query) => {
-  //     query.forEach((doc) => {
-  //       this.listaUnis.push(doc.id);
-  //       console.log(doc.id + ": " + doc.get("ciudad"));
-  //     });
-  //   });
-  // }
+  getUniversidades() : Observable<any>{
+    return this.http.get<any>(this.urlUniversidades);
+  }
 
-  getUnis(): Observable<any> {
-    return this.http.get<any>("/api/universidades");
+  getDatosUni(id: number) {
+    return this.http.get<any>("/api/universidades/" + id);
   }
 
   getFacultades(uni: string) {
